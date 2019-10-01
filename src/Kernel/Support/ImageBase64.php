@@ -57,6 +57,7 @@ class ImageBase64
         fwrite($temp, $image);
         // 回到
         fseek($temp, 0);
+
         return $temp;
     }
 
