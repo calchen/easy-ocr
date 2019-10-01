@@ -62,9 +62,9 @@ class IdentityCard extends Model
     private $validEndAt;
 
     /**
-     * 长期有效
+     * 长期有效.
      *
-     * @var bool $validEndAt
+     * @var bool
      */
     private $isLongTermValid = false;
 
@@ -95,7 +95,7 @@ class IdentityCard extends Model
     }
 
     /**
-     * 根据腾讯云接口返回进行实例化
+     * 根据腾讯云接口返回进行实例化.
      *
      * @param IDCardOCRResponse $response
      *
@@ -155,7 +155,7 @@ class IdentityCard extends Model
         if (isset($advancedInfo['WarnInfos']) && is_array($advancedInfo['WarnInfos'])) {
             $this->extra['WarnInfos'] = [];
             foreach ($advancedInfo['WarnInfos'] as $info) {
-                /**
+                /*
                  * -9100 身份证有效日期不合法告警，
                  * -9101 身份证边框不完整告警，
                  * -9102 身份证复印件告警，
@@ -285,7 +285,7 @@ class IdentityCard extends Model
      */
     public function isNationalEmblemSide(): bool
     {
-        return !$this->isPersonalInfoSide;
+        return ! $this->isPersonalInfoSide;
     }
 
     /**

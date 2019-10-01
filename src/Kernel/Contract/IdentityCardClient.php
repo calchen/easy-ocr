@@ -10,7 +10,7 @@ use Calchen\EasyOcr\Models\IdentityCard;
 abstract class IdentityCardClient extends Client
 {
     /**
-     * 身份证个人信息页和国徽页
+     * 身份证个人信息页和国徽页.
      */
     const CARD_SIDES = [
         'personal_info',
@@ -43,7 +43,7 @@ abstract class IdentityCardClient extends Client
     abstract public function nationalEmblemSideOcr($picture, Config $config = null): IdentityCard;
 
     /**
-     * 检查身份证正反面参数是否正确
+     * 检查身份证正反面参数是否正确.
      *
      * @param $cardSide
      *
@@ -51,7 +51,7 @@ abstract class IdentityCardClient extends Client
      */
     protected function checkCardSide($cardSide)
     {
-        if (!in_array($cardSide, static::CARD_SIDES)) {
+        if (! in_array($cardSide, static::CARD_SIDES)) {
             // todo
             throw new InvalidArgumentException('身份证正反面参数错误。仅数组 '.static::class.'::CARD_SIDES 中的值可用。');
         }

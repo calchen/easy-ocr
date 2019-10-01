@@ -3,12 +3,11 @@
 namespace Calchen\EasyOcr\TencentCloud\IdentityCard;
 
 /**
- * 身份证识别 Config
+ * 身份证识别 Config.
  *
  * @link https://cloud.tencent.com/document/api/866/33524#2.-.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0
  *
  * Class Config
- * @package Calchen\EasyOcr\TencentCloud\IdentityCard\Model
  */
 class Config extends \Calchen\EasyOcr\Kernel\Base\Config
 {
@@ -149,7 +148,7 @@ class Config extends \Calchen\EasyOcr\Kernel\Base\Config
     }
 
     /**
-     * 输出成接口所需参数数组形式
+     * 输出成接口所需参数数组形式.
      *
      * @param callable|null $callback
      *

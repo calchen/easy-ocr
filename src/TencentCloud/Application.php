@@ -5,8 +5,7 @@ namespace Calchen\EasyOcr\TencentCloud;
 use Calchen\EasyOcr\Kernel\ServiceContainer;
 
 /**
- * Class Application
- * @package Calchen\EasyOcr\TencentCloud
+ * Class Application.
  *
  * @property IdentityCard\IdentityCardClient       identityCard
  * @property BusinessLicense\BusinessLicenseClient businessLicense

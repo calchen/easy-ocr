@@ -33,7 +33,7 @@ abstract class Model
     public function setUri(string $scheme, string $path = null): self
     {
         if (is_null($path)) {
-            @list($this->scheme, $this->path) = explode('::', $scheme);
+            @[$this->scheme, $this->path] = explode('::', $scheme);
         } else {
             $this->scheme = $scheme;
             $this->path = $path;

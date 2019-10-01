@@ -7,8 +7,7 @@ use Calchen\EasyOcr\Kernel\Contract\IdentityCardClient;
 use Pimple\Container;
 
 /**
- * Class Application
- * @package Calchen\EasyOcr\TencentCloud
+ * Class Application.
  *
  * @property IdentityCardClient    identityCard
  * @property BusinessLicenseClient businessLicense
@@ -26,7 +25,6 @@ class ServiceContainer extends Container
 
         parent::__construct($values);
     }
-
 
     /**
      * @param array $providers

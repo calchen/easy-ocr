@@ -10,7 +10,7 @@ use Exception;
 class BusinessLicenseTest extends TestCase
 {
     /**
-     * 测试入参不正确
+     * 测试入参不正确.
      *
      * @throws Exception
      */
@@ -24,7 +24,7 @@ class BusinessLicenseTest extends TestCase
     }
 
     /**
-     * 测试转数组
+     * 测试转数组.
      */
     public function testToArray()
     {

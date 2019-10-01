@@ -2,7 +2,7 @@
 
 namespace Calchen\EasyOcr\Exception;
 
-class Exception  extends \Exception
+class Exception extends \Exception
 {
     //
 }

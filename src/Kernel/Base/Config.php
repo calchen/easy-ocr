@@ -8,7 +8,7 @@ use ReflectionProperty;
 abstract class Config
 {
     /**
-     * 输出成接口所需参数数组形式
+     * 输出成接口所需参数数组形式.
      *
      * @param callable|null $callback
      *
@@ -21,7 +21,7 @@ abstract class Config
         $reflect = new ReflectionObject($this);
         foreach ($reflect->getProperties(ReflectionProperty::IS_PROTECTED) as $prop) {
             $propName = $prop->getName();
-            if (!is_null($callback)) {
+            if (! is_null($callback)) {
                 $result = $callback($result, $propName);
                 continue;
             }
