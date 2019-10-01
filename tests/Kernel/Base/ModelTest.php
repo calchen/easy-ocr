@@ -15,7 +15,7 @@ class ModelTest extends TestCase
         $this->assertSame($model->getUri(), 'oss::/a/b/c/d.jpg');
         $this->assertSame((string) $model, '[]');
 
-        $model->setUri('oss','/a/b/c/d.jpg');
+        $model->setUri('oss', '/a/b/c/d.jpg');
         $this->assertSame($model->getScheme(), 'oss');
         $this->assertSame($model->getPath(), '/a/b/c/d.jpg');
         $this->assertSame($model->getUri(), 'oss::/a/b/c/d.jpg');

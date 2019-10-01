@@ -68,11 +68,11 @@ class ImageBase64
 
     public static function isInvalid($haystack)
     {
-        return !static::isValid($haystack);
+        return ! static::isValid($haystack);
     }
 
     /**
-     * 判断文件路径是否合法
+     * 判断文件路径是否合法.
      *
      * @param $path
      *

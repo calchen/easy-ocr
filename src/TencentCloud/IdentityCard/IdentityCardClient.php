@@ -13,7 +13,7 @@ use TencentCloud\Ocr\V20181119\Models\IDCardOCRRequest;
 class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardClient
 {
     /**
-     * 接口 CardSide 字段
+     * 接口 CardSide 字段.
      */
     const TENCENT_CLOUD_CARD_SIDES = [
         'FRONT',    // 为身份证有照片的一面（人像面）
@@ -43,7 +43,7 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
             'CardSide' => static::TENCENT_CLOUD_CARD_SIDES[array_search($cardSide, static::CARD_SIDES)],
         ];
 
-        if (!is_null($config)) {
+        if (! is_null($config)) {
             $params['Config'] = (string) $config;
         }
 

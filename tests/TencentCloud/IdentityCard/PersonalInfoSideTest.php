@@ -17,7 +17,7 @@ use Throwable;
 class PersonalInfoSideTest extends TestCase
 {
     /**
-     * 测试使用文件路径
+     * 测试使用文件路径.
      */
     public function testFilePath()
     {
@@ -30,7 +30,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试使用 base64 编码后的内容
+     * 测试使用 base64 编码后的内容.
      *
      * @throws Throwable
      */
@@ -45,7 +45,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试使用二进制内容
+     * 测试使用二进制内容.
      */
     public function testFileContent()
     {
@@ -58,7 +58,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试 SplFileInfo 类型文件
+     * 测试 SplFileInfo 类型文件.
      */
     public function testSplFileInfo()
     {
@@ -71,7 +71,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试 url 类型文件
+     * 测试 url 类型文件.
      */
     public function testFileUrl()
     {
@@ -84,7 +84,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试设置错身份证正反面
+     * 测试设置错身份证正反面.
      */
     public function testWrongSideParameter()
     {
@@ -100,7 +100,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试非身份证正面文件
+     * 测试非身份证正面文件.
      */
     public function testUnidentifiableFile()
     {
@@ -116,7 +116,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试 Ocr 方法
+     * 测试 Ocr 方法.
      */
     public function testOcrFunction()
     {
@@ -129,7 +129,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试 Ocr 方法证件正反面参数不合法
+     * 测试 Ocr 方法证件正反面参数不合法.
      */
     public function testOcrFunctionCardSide()
     {
@@ -144,7 +144,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试身份证照片裁剪
+     * 测试身份证照片裁剪.
      *
      * @throws Throwable
      */
@@ -167,7 +167,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试人像照片裁剪
+     * 测试人像照片裁剪.
      *
      * @throws Throwable
      */
@@ -190,7 +190,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试复印件告警
+     * 测试复印件告警.
      */
     public function testCopyWarn()
     {
@@ -204,7 +204,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试边框和框内遮挡告警
+     * 测试边框和框内遮挡告警.
      */
     public function testBorderCheckWarn()
     {
@@ -219,7 +219,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试翻拍告警
+     * 测试翻拍告警.
      */
     public function testReshootWarn()
     {
@@ -234,7 +234,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试PS检测告警
+     * 测试PS检测告警.
      */
     public function testDetectPsWarn()
     {
@@ -249,7 +249,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试临时身份证告警
+     * 测试临时身份证告警.
      */
     public function testTempIdWarn()
     {
@@ -264,7 +264,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 测试在设置了 config 但使用了不正确的文件处理
+     * 测试在设置了 config 但使用了不正确的文件处理.
      *
      * @throws Throwable
      */
@@ -283,7 +283,7 @@ class PersonalInfoSideTest extends TestCase
     }
 
     /**
-     * 校验结果
+     * 校验结果.
      *
      * @param IdentityCard $result
      */

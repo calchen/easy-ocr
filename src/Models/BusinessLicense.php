@@ -48,21 +48,21 @@ class BusinessLicense extends Model
     /**
      * 营业期限开始日期
      *
-     * @var Carbon $validStartAt
+     * @var Carbon
      */
     private $validStartAt;
 
     /**
      * 营业期限结束日期
      *
-     * @var Carbon $validEndAt
+     * @var Carbon
      */
     private $validEndAt;
 
     /**
-     * 营业期限长期有效
+     * 营业期限长期有效.
      *
-     * @var bool $validEndAt
+     * @var bool
      */
     private $isLongTermValid = false;
 
@@ -75,7 +75,6 @@ class BusinessLicense extends Model
      * @var string 组成形式
      */
     private $organizationType;
-
 
     /**
      * BusinessLicense constructor.
@@ -106,7 +105,7 @@ class BusinessLicense extends Model
         // 处理营业期限
         $period = $response->Period;
         preg_match_all('/\d{4}年\d{1,2}月\d{1,2}日/', $period, $match);
-        @list($this->validStartAt, $this->validEndAt) = array_map(function ($date) {
+        @[$this->validStartAt, $this->validEndAt] = array_map(function ($date) {
             return Carbon::createFromFormat('Y年m月d日', $date)->startOfDay();
         }, $match[0]);
         if (Str::endsWith($period, '长期')) {

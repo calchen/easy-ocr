@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Calchen\EasyOcr\Kernel\Contract;
 
 use Calchen\EasyOcr\Kernel\Base\Client;

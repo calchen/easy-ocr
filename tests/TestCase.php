@@ -25,7 +25,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * 获取临时文件的路径
+     * 获取临时文件的路径.
      *
      * @param string $dir
      * @param string $namespace
@@ -43,13 +43,13 @@ class TestCase extends \PHPUnit\Framework\TestCase
             $function,
         ]);
         // 如果文件夹不存在，需要创建
-        !file_exists($tempFilePath) && mkdir($tempFilePath, 0777, true);
+        ! file_exists($tempFilePath) && mkdir($tempFilePath, 0777, true);
 
         return "$tempFilePath/".Str::random().'.jpg';
     }
 
     /**
-     * 获取需要测试的文件的路径
+     * 获取需要测试的文件的路径.
      *
      * @param string $fileName
      *

@@ -11,7 +11,7 @@ use Throwable;
 class BusinessLicenseTest extends TestCase
 {
     /**
-     * 测试使用文件路径
+     * 测试使用文件路径.
      */
     public function testFilePath()
     {
@@ -24,7 +24,7 @@ class BusinessLicenseTest extends TestCase
     }
 
     /**
-     * 测试使用 base64 编码后的内容
+     * 测试使用 base64 编码后的内容.
      *
      * @throws Throwable
      */
@@ -39,7 +39,7 @@ class BusinessLicenseTest extends TestCase
     }
 
     /**
-     * 测试使用二进制内容
+     * 测试使用二进制内容.
      */
     public function testFileContent()
     {
@@ -52,7 +52,7 @@ class BusinessLicenseTest extends TestCase
     }
 
     /**
-     * 测试 SplFileInfo 类型文件
+     * 测试 SplFileInfo 类型文件.
      */
     public function testSplFileInfo()
     {
@@ -65,7 +65,7 @@ class BusinessLicenseTest extends TestCase
     }
 
     /**
-     * 测试 url 类型文件
+     * 测试 url 类型文件.
      */
     public function testFileUrl()
     {
@@ -78,7 +78,7 @@ class BusinessLicenseTest extends TestCase
     }
 
     /**
-     * 校验结果
+     * 校验结果.
      *
      * @param BusinessLicense $result
      */
