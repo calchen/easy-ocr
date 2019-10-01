@@ -10,8 +10,8 @@
     ],
     "require": {
         "php": "^7.0",
-        "ext-json": "^1.6",
-        "ext-fileinfo": "^7.3",
+        "ext-json": "*",
+        "ext-fileinfo": "*",
         "pimple/pimple": "^3.0",
         "tencentcloud/tencentcloud-sdk-php": "^3.0",
         "nesbot/carbon": "^1.26.0|^2.0"

@@ -54,10 +54,9 @@ class ImageBase64
 
         /** @var resource $temp */
         $temp = tmpfile();
-        // tempnam()
         fwrite($temp, $image);
+        // 回到
         fseek($temp, 0);
-        // fflush($temp);
         return $temp;
     }
 
