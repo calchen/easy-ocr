@@ -53,7 +53,7 @@ class ImageBase64Test extends TestCase
     }
 
     /**
-     * 测试解码非 Base64 编码的图片字符串时是否抛异常
+     * 测试解码非 Base64 编码的图片字符串时是否抛异常.
      *
      * @throws Throwable
      */

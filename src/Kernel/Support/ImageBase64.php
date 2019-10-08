@@ -71,7 +71,7 @@ class ImageBase64
 
     public static function isInvalid($haystack)
     {
-        return !static::isValid($haystack);
+        return ! static::isValid($haystack);
     }
 
     /**
