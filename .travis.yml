@@ -5,17 +5,16 @@ cache:
     - $HOME/.cache/pip
     - $HOME/.composer/cache/files
 
-# 本项目要求 PHP 7+
+# 本项目要求 PHP 7+, 考虑到 PHP 版本命名的规律，这里均以 7.x.0 版本进行测试
 # 且考虑到该项目今后会封装成 Laravel 扩展包，所以针对特定 PHP 版本进行测试
 # 7.0 for Laravel 5.5
 # 7.1.3 for Laravel 5.6 - 5.8
 # 7.2 for Laravel 6.x
 php:
-  - 7.0
+  - 7.0.0
   - 7.1.3
-  - 7.1
-  - 7.2
-  - 7.3
+  - 7.2.0
+  - 7.3.0
 
 before_install:
   - cp ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini ~/xdebug.ini
