@@ -105,7 +105,7 @@ class BusinessLicense extends Model
         // 处理营业期限
         $period = $response->Period;
         preg_match_all('/\d{4}年\d{1,2}月\d{1,2}日/', $period, $match);
-        @[$this->validStartAt, $this->validEndAt] = array_map(function ($date) {
+        @list($this->validStartAt, $this->validEndAt) = array_map(function ($date) {
             return Carbon::createFromFormat('Y年m月d日', $date)->startOfDay();
         }, $match[0]);
         if (Str::endsWith($period, '长期')) {
