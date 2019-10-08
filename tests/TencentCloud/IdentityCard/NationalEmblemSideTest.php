@@ -238,14 +238,14 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testDetectPsWarn()
     {
-        $filePath = $this->getTestCaseFilePath('20141359884989-1.png');
+        $filePath = $this->getTestCaseFilePath('icon_id_04.jpg');
         $config = new Config();
         $config->setDetectPsWarn(true);
         $result = $this->tencentCloud()
             ->identityCard
             ->nationalEmblemSideOcr($filePath, $config);
 
-        $this->assertTrue($result->getExtra()['WarnInfos']['DetectPsWarn']);
+        $this->assertFalse(isset($result->getExtra()['WarnInfos']['DetectPsWarn']));
     }
 
     /**
