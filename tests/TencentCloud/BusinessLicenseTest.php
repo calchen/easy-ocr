@@ -69,7 +69,7 @@ class BusinessLicenseTest extends TestCase
      */
     public function testFileUrl()
     {
-        $filePath = 'https://github.com/calchen/easy-ocr/raw/master/tests/examples/ocr_yyzz_02.jpg';
+        $filePath = 'http://chenky-public-resource.chenky.cn/calchen/easy-ocr/master/tests/examples/ocr_yyzz_02.jpg';
         $this->checkResult(
             $this->tencentCloud()
                 ->businessLicense

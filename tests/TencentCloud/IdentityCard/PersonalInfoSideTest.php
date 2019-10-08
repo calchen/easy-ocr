@@ -75,7 +75,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testFileUrl()
     {
-        $filePath = 'https://github.com/calchen/easy-ocr/raw/master/tests/examples/icon_id_01.jpg';
+            $filePath = 'http://chenky-public-resource.chenky.cn/calchen/easy-ocr/master/tests/examples/icon_id_01.jpg';
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
