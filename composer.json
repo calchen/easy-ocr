@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "php-coveralls/php-coveralls": "^2.1",
-        "friendsofphp/php-cs-fixer": "^2.15",
+        "friendsofphp/php-cs-fixer": "^2.13",
         "phpunit/phpunit": "^6.0|^7.0|^8.0",
         "symfony/var-dumper": "~3.3|^4.0"
     },
