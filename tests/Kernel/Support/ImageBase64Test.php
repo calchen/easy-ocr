@@ -2,8 +2,10 @@
 
 namespace Calchen\EasyOcr\Test\Kernel\Support;
 
+use Calchen\EasyOcr\Exception\InvalidArgumentException;
 use Calchen\EasyOcr\Kernel\Support\ImageBase64;
 use Calchen\EasyOcr\Test\TestCase;
+use Exception;
 use SplFileInfo;
 use Throwable;
 
@@ -48,5 +50,19 @@ class ImageBase64Test extends TestCase
         $imageBase64 = ImageBase64::encode($path);
         $image = ImageBase64::decode($imageBase64);
         $this->assertSame('image/jpeg', mime_content_type($image));
+    }
+
+    /**
+     * 测试解码非 Base64 编码的图片字符串时是否抛异常
+     *
+     * @throws Throwable
+     */
+    public function testDecodeInvalidImage()
+    {
+        try {
+            ImageBase64::decode('not image');
+        } catch (Exception $e) {
+            $this->assertInstanceOf(InvalidArgumentException::class, $e);
+        }
     }
 }

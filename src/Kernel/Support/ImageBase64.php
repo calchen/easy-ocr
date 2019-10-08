@@ -2,7 +2,10 @@
 
 namespace Calchen\EasyOcr\Kernel\Support;
 
+use Calchen\EasyOcr\Exception\InvalidArgumentException;
+use Exception;
 use SplFileInfo;
+use Throwable;
 
 class ImageBase64
 {
@@ -10,7 +13,7 @@ class ImageBase64
      * @param $image SplFileInfo|string
      *
      * @return string
-     * @throws \Throwable
+     * @throws Throwable
      */
     public static function encode($image)
     {
@@ -31,7 +34,7 @@ class ImageBase64
 
         if (Str::startsWith($mime, 'image/')) {
             // todo
-            new \Exception('不是一个图片文件。');
+            new Exception('不是一个图片文件。');
         }
 
         return 'data:'.$mime.';base64,'.base64_encode($data);
@@ -41,13 +44,13 @@ class ImageBase64
      * @param $data
      *
      * @return resource
-     * @throws \Throwable
+     * @throws Throwable
      */
     public static function decode($data)
     {
         if (self::isInvalid($data)) {
             // todo
-            new \Exception('不是合法的图片 Base64 字符串。');
+            throw new InvalidArgumentException('不是合法的图片 Base64 字符串。');
         }
 
         $image = base64_decode(explode(';base64,', $data)[1]);
@@ -68,7 +71,7 @@ class ImageBase64
 
     public static function isInvalid($haystack)
     {
-        return ! static::isValid($haystack);
+        return !static::isValid($haystack);
     }
 
     /**
