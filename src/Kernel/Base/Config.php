@@ -2,10 +2,11 @@
 
 namespace Calchen\EasyOcr\Kernel\Base;
 
+use JsonSerializable;
 use ReflectionObject;
 use ReflectionProperty;
 
-abstract class Config
+abstract class Config implements JsonSerializable
 {
     /**
      * 输出成接口所需参数数组形式.
@@ -21,7 +22,7 @@ abstract class Config
         $reflect = new ReflectionObject($this);
         foreach ($reflect->getProperties(ReflectionProperty::IS_PROTECTED) as $prop) {
             $propName = $prop->getName();
-            if (! is_null($callback)) {
+            if (!is_null($callback)) {
                 $result = $callback($result, $propName);
                 continue;
             }
@@ -33,8 +34,20 @@ abstract class Config
         return $result;
     }
 
+
     public function __toString(): string
     {
         return json_encode($this->toArray());
     }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    public function __call($member, $param)
+    {
+        dd($member, $param);
+    }
+
 }
