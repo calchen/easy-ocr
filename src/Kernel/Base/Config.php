@@ -22,7 +22,7 @@ abstract class Config implements JsonSerializable
         $reflect = new ReflectionObject($this);
         foreach ($reflect->getProperties(ReflectionProperty::IS_PROTECTED) as $prop) {
             $propName = $prop->getName();
-            if (!is_null($callback)) {
+            if (! is_null($callback)) {
                 $result = $callback($result, $propName);
                 continue;
             }
@@ -33,7 +33,6 @@ abstract class Config implements JsonSerializable
 
         return $result;
     }
-
 
     public function __toString(): string
     {
@@ -49,5 +48,4 @@ abstract class Config implements JsonSerializable
     {
         dd($member, $param);
     }
-
 }
