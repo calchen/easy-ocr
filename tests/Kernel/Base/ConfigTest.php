@@ -12,4 +12,11 @@ class ConfigTest extends TestCase
 
         $this->assertSame((string) $config, '{"userName":null,"password":"password"}');
     }
+
+    public function testJsonEncode()
+    {
+        $config = new DemoConfig();
+
+        $this->assertSame(json_encode($config), '{"userName":null,"password":"password"}');
+    }
 }

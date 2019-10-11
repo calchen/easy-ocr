@@ -43,9 +43,4 @@ abstract class Config implements JsonSerializable
     {
         return $this->toArray();
     }
-
-    public function __call($member, $param)
-    {
-        dd($member, $param);
-    }
 }
