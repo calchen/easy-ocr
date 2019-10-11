@@ -128,7 +128,7 @@ class IdentityCard extends Model
             $this->issuingAuthority = $response->Authority;
             $validDate = explode('-', $response->ValidDate);
 
-            if (!isset($advancedInfo['WarnInfos']) || !in_array(-9100, $advancedInfo['WarnInfos'])) {
+            if (! isset($advancedInfo['WarnInfos']) || ! in_array(-9100, $advancedInfo['WarnInfos'])) {
                 $this->validStartAt = Carbon::createFromFormat('Y.m.d', $validDate[0])->startOfDay();
                 if (count($validDate) > 1) {
                     if ($validDate[1] == '长期') {
