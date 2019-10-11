@@ -5,6 +5,7 @@ namespace Calchen\EasyOcr\Models;
 use Calchen\EasyOcr\Exception\Exception;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
 use Calchen\EasyOcr\Kernel\Base\Model;
+use Calchen\EasyOcr\Kernel\Support\Str;
 use Carbon\Carbon;
 use TencentCloud\Ocr\V20181119\Models\IDCardOCRResponse;
 
@@ -132,6 +133,14 @@ class IdentityCard extends Model
                 $this->validEndAt = Carbon::createFromFormat('Y.m.d', $validDate[1])->startOfDay();
             }
         } else {
+            // 腾讯云 OCR 无法识别临时身份证，会报错
+            // 但是如果识别了临时身份证且设置了 Config 参数中的 TempIdWarn = true，就不会报错但返回的其他字段均为空字符串
+            // -9104 临时身份证告警
+            if (Str::contains($response->AdvancedInfo, '-9104')) {
+                // todo
+                throw new Exception('无法识别临时身份证');
+            }
+
             // 在传入 Config 的时候，即使 OCR 识别失败也不会抛错，会返回所有字段为空字符串
             // todo
             throw new Exception('Ocr 识别失败');
@@ -179,9 +188,9 @@ class IdentityCard extends Model
                     case -9103:
                         $this->extra['WarnInfos']['ReshootWarn'] = true;
                         break;
-                    case -9104:
-                        $this->extra['WarnInfos']['TempIdWarn'] = true;
-                        break;
+                    // case -9104:
+                    //     $this->extra['WarnInfos']['TempIdWarn'] = true;
+                    //     break;
                     case -9106:
                         $this->extra['WarnInfos']['DetectPsWarn'] = true;
                         break;

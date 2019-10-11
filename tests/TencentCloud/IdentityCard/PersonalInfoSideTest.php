@@ -253,7 +253,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testTempIdWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('th.jpg');
         $config = new Config();
         $config->setTempIdWarn(true);
         $result = $this->tencentCloud()
