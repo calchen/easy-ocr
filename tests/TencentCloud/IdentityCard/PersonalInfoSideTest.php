@@ -21,7 +21,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testFilePath()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -36,7 +36,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testFileBase64String()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -49,7 +49,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testFileContent()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -62,7 +62,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testSplFileInfo()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -88,7 +88,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testWrongSideParameter()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         try {
             $this->tencentCloud()
                 ->identityCard
@@ -104,7 +104,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testUnidentifiableFile()
     {
-        $filePath = $this->getTestCaseFilePath('icon_ocr_card_1.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_ocr_card_1.jpg');
         try {
             $this->tencentCloud()
                 ->identityCard
@@ -120,7 +120,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testOcrFunction()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -133,7 +133,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testOcrFunctionCardSide()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         try {
             $this->tencentCloud()
                 ->identityCard
@@ -150,7 +150,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testConfigCropIdCard()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $config = new Config();
         $config->setCropIdCard(true);
         $result = $this->tencentCloud()
@@ -173,7 +173,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testConfigCropPortrait()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $config = new Config();
         $config->setCropPortrait(true);
         $result = $this->tencentCloud()
@@ -194,13 +194,14 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testCopyWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_02-1.png');
         $config = new Config();
         $config->setCopyWarn(true);
         $result = $this->tencentCloud()
             ->identityCard
             ->personalInfoSideOcr($filePath, $config);
-        $this->assertFalse(isset($result->getExtra()['WarnInfos']['CopyWarn']));
+
+        $this->assertTrue($result->getExtra()['WarnInfos']['CopyWarn']);
     }
 
     /**
@@ -208,7 +209,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testBorderCheckWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $config = new Config();
         $config->setBorderCheckWarn(true);
         $result = $this->tencentCloud()
@@ -223,7 +224,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testReshootWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_05.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_05.jpg');
         $config = new Config();
         $config->setReshootWarn(true);
         $result = $this->tencentCloud()
@@ -238,7 +239,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testDetectPsWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_05.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_05.jpg');
         $config = new Config();
         $config->setDetectPsWarn(true);
         $result = $this->tencentCloud()
@@ -253,14 +254,17 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testTempIdWarn()
     {
-        $filePath = $this->getTestCaseFilePath('th.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/th.jpg');
         $config = new Config();
         $config->setTempIdWarn(true);
-        $result = $this->tencentCloud()
-            ->identityCard
-            ->personalInfoSideOcr($filePath, $config);
 
-        $this->assertFalse(isset($result->getExtra()['WarnInfos']['TempIdWarn']));
+        try {
+            $this->tencentCloud()
+                ->identityCard
+                ->personalInfoSideOcr($filePath, $config);
+        } catch (Exception $e) {
+            $this->assertInstanceOf(\Calchen\EasyOcr\Exception\Exception::class, $e);
+        }
     }
 
     /**
@@ -270,7 +274,7 @@ class PersonalInfoSideTest extends TestCase
      */
     public function testInvalidFileWithConfig()
     {
-        $filePath = $this->getTestCaseFilePath('face_02.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/face_02.jpg');
         $config = new Config();
         $config->setCopyWarn(true);
         try {

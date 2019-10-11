@@ -28,7 +28,7 @@ class BusinessLicenseTest extends TestCase
      */
     public function testToArray()
     {
-        $filePath = $this->getTestCaseFilePath('ocr_yyzz_02.jpg');
+        $filePath = $this->getTestCaseFilePath('businessLicense/ocr_yyzz_02.jpg');
         $result = $this->tencentCloud()
             ->businessLicense
             ->ocr($filePath);

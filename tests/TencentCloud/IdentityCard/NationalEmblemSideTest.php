@@ -20,7 +20,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testFilePath()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -35,7 +35,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testFileBase64String()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -48,7 +48,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testFileContent()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -61,7 +61,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testSplFileInfo()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -87,7 +87,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testWrongSideParameter()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         try {
             $r = $this->tencentCloud()
                 ->identityCard
@@ -103,7 +103,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testUnidentifiableFile()
     {
-        $filePath = $this->getTestCaseFilePath('icon_ocr_card_1.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_ocr_card_1.jpg');
         try {
             $this->tencentCloud()
                 ->identityCard
@@ -119,7 +119,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testOcrFunction()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
@@ -132,7 +132,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testLongTermValid()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_06.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_06.jpg');
         $result = $this->tencentCloud()
             ->identityCard
             ->nationalEmblemSideOcr($filePath);
@@ -150,7 +150,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testConfigCropIdCard()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $config = new Config();
         $config->setCropIdCard(true);
         $result = $this->tencentCloud()
@@ -173,7 +173,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testConfigCropPortrait()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $config = new Config();
         $config->setCropPortrait(true);
         $result = $this->tencentCloud()
@@ -194,7 +194,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testCopyWarn()
     {
-        $filePath = $this->getTestCaseFilePath('20141359884989.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/20141359884989.jpg');
         $config = new Config();
         $config->setCopyWarn(true);
         $result = $this->tencentCloud()
@@ -208,7 +208,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testBorderCheckWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/icon_id_03.jpg');
         $config = new Config();
         $config->setBorderCheckWarn(true);
         $result = $this->tencentCloud()
@@ -223,14 +223,14 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testReshootWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/微信图片_20191012014424-1.jpg');
         $config = new Config();
         $config->setReshootWarn(true);
         $result = $this->tencentCloud()
             ->identityCard
             ->nationalEmblemSideOcr($filePath, $config);
 
-        $this->assertFalse(isset($result->getExtra()['WarnInfos']['ReshootWarn']));
+        $this->assertTrue($result->getExtra()['WarnInfos']['ReshootWarn']);
     }
 
     /**
@@ -238,14 +238,14 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testDetectPsWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_04.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/PS.png');
         $config = new Config();
         $config->setDetectPsWarn(true);
         $result = $this->tencentCloud()
             ->identityCard
             ->nationalEmblemSideOcr($filePath, $config);
 
-        $this->assertFalse(isset($result->getExtra()['WarnInfos']['DetectPsWarn']));
+        $this->assertTrue($result->getExtra()['WarnInfos']['DetectPsWarn']);
     }
 
     /**
@@ -253,14 +253,14 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testInvalidDateWarn()
     {
-        $filePath = $this->getTestCaseFilePath('身份证日期错误.png');
+        $filePath = $this->getTestCaseFilePath('identityCard/nationalEmblemSide/身份证日期错误.png');
         $config = new Config();
         $config->setInvalidDateWarn(true);
         $result = $this->tencentCloud()
             ->identityCard
             ->nationalEmblemSideOcr($filePath, $config);
 
-        $this->assertFalse(isset($result->getExtra()['WarnInfos']['InvalidDateWarn']));
+        $this->assertTrue($result->getExtra()['WarnInfos']['InvalidDateWarn']);
     }
 
     /**

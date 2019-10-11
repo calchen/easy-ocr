@@ -28,7 +28,7 @@ class IdentityCardTest extends TestCase
      */
     public function testToArray()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_01.jpg');
+        $filePath = $this->getTestCaseFilePath('identityCard/personalInfoSide/icon_id_01.jpg');
         $result = $this->tencentCloud()
             ->identityCard
             ->personalInfoSideOcr($filePath);
