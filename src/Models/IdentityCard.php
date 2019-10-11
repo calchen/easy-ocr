@@ -128,7 +128,7 @@ class IdentityCard extends Model
             $this->issuingAuthority = $response->Authority;
             $validDate = explode('-', $response->ValidDate);
 
-            if (!isset($advancedInfo['WarnInfos']) || !in_array(-9100, $advancedInfo['WarnInfos'])) {
+            if (! isset($advancedInfo['WarnInfos']) || ! in_array(-9100, $advancedInfo['WarnInfos'])) {
                 $this->validStartAt = Carbon::createFromFormat('Y.m.d', $validDate[0])->startOfDay();
                 if ($validDate[1] == '长期') {
                     $this->isLongTermValid = true;
@@ -140,7 +140,7 @@ class IdentityCard extends Model
             // 腾讯云 OCR 无法识别临时身份证，会报错
             // 但是如果识别了临时身份证且设置了 Config 参数中的 TempIdWarn = true，就不会报错但返回的其他字段均为空字符串
             // -9104 临时身份证告警
-            if (isset($advancedInfo['WarnInfos']) && !in_array(-9104, $advancedInfo['WarnInfos'])) {
+            if (isset($advancedInfo['WarnInfos']) && ! in_array(-9104, $advancedInfo['WarnInfos'])) {
                 // todo
                 throw new Exception('无法识别临时身份证');
             }
@@ -296,7 +296,7 @@ class IdentityCard extends Model
      */
     public function isNationalEmblemSide(): bool
     {
-        return !$this->isPersonalInfoSide;
+        return ! $this->isPersonalInfoSide;
     }
 
     /**
