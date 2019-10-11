@@ -15,7 +15,7 @@ class BusinessLicenseTest extends TestCase
      */
     public function testFilePath()
     {
-        $filePath = $this->getTestCaseFilePath('wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
+        $filePath = $this->getTestCaseFilePath('businessLicense/wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->businessLicense
@@ -30,7 +30,7 @@ class BusinessLicenseTest extends TestCase
      */
     public function testFileBase64String()
     {
-        $filePath = $this->getTestCaseFilePath('wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
+        $filePath = $this->getTestCaseFilePath('businessLicense/wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->businessLicense
@@ -43,7 +43,7 @@ class BusinessLicenseTest extends TestCase
      */
     public function testFileContent()
     {
-        $filePath = $this->getTestCaseFilePath('wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
+        $filePath = $this->getTestCaseFilePath('businessLicense/wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->businessLicense
@@ -56,7 +56,7 @@ class BusinessLicenseTest extends TestCase
      */
     public function testSplFileInfo()
     {
-        $filePath = $this->getTestCaseFilePath('wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
+        $filePath = $this->getTestCaseFilePath('businessLicense/wKhQtFNLruGEX31pAAAAAM8RGA8186.jpg');
         $this->checkResult(
             $this->tencentCloud()
                 ->businessLicense
