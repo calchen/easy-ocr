@@ -253,7 +253,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testInvalidDateWarn()
     {
-        $filePath = $this->getTestCaseFilePath('icon_id_03.jpg');
+        $filePath = $this->getTestCaseFilePath('身份证日期错误.png');
         $config = new Config();
         $config->setInvalidDateWarn(true);
         $result = $this->tencentCloud()
