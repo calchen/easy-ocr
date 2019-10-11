@@ -74,7 +74,7 @@ class NationalEmblemSideTest extends TestCase
      */
     public function testFileUrl()
     {
-        $filePath = 'http://chenky-public-resource.chenky.cn/calchen/easy-ocr/master/tests/examples/icon_id_03.jpg';
+        $filePath = 'http://chenky-public-resource.chenky.cn/calchen/easy-ocr/master/tests/examples/identityCard/nationalEmblemSide/icon_id_03.jpg';
         $this->checkResult(
             $this->tencentCloud()
                 ->identityCard
