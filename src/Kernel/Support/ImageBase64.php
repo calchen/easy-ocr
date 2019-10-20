@@ -2,8 +2,9 @@
 
 namespace Calchen\EasyOcr\Kernel\Support;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
+use Calchen\EasyOcr\Exception\Exception;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
-use Exception;
 use SplFileInfo;
 use Throwable;
 
@@ -33,11 +34,10 @@ class ImageBase64
         }
 
         if (Str::startsWith($mime, 'image/')) {
-            // todo
-            new Exception('不是一个图片文件。');
+            new Exception(ErrorCodes::FILE_TYPE_INVALID_NOT_IMAGE);
         }
 
-        return 'data:'.$mime.';base64,'.base64_encode($data);
+        return "data:{$mime};base64,".base64_encode($data);
     }
 
     /**
@@ -49,8 +49,7 @@ class ImageBase64
     public static function decode($data)
     {
         if (self::isInvalid($data)) {
-            // todo
-            throw new InvalidArgumentException('不是合法的图片 Base64 字符串。');
+            throw new InvalidArgumentException(ErrorCodes::IMAGE_BASE64_STRING_INVALID);
         }
 
         $image = base64_decode(explode(';base64,', $data)[1]);
@@ -58,7 +57,7 @@ class ImageBase64
         /** @var resource $temp */
         $temp = tmpfile();
         fwrite($temp, $image);
-        // 回到
+        // 回到文件开头否则许多操作无法进行
         fseek($temp, 0);
 
         return $temp;

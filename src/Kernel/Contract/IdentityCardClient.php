@@ -2,6 +2,7 @@
 
 namespace Calchen\EasyOcr\Kernel\Contract;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
 use Calchen\EasyOcr\Kernel\Base\Client;
 use Calchen\EasyOcr\Kernel\Base\Config;
@@ -52,8 +53,7 @@ abstract class IdentityCardClient extends Client
     protected function checkCardSide($cardSide)
     {
         if (! in_array($cardSide, static::CARD_SIDES)) {
-            // todo
-            throw new InvalidArgumentException('身份证正反面参数错误。仅数组 '.static::class.'::CARD_SIDES 中的值可用。');
+            throw new InvalidArgumentException(ErrorCodes::IDENTITY_CARD_SIDE_ARGUMENT_INVALID);
         }
     }
 }

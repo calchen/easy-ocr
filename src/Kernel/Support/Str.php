@@ -2,6 +2,8 @@
 
 namespace Calchen\EasyOcr\Kernel\Support;
 
+use Exception;
+
 class Str
 {
     /**
@@ -47,7 +49,7 @@ class Str
      * @param int $length
      *
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public static function random($length = 16)
     {

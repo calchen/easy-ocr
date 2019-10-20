@@ -2,11 +2,16 @@
 
 namespace Calchen\EasyOcr\TencentCloud\BusinessLicense;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
+use Calchen\EasyOcr\Exception\InvalidArgumentException;
+use Calchen\EasyOcr\Exception\TencentCloudException;
 use Calchen\EasyOcr\Kernel\Base\Config;
 use Calchen\EasyOcr\Kernel\Support\ImageBase64;
 use Calchen\EasyOcr\Kernel\Support\Str;
 use Calchen\EasyOcr\Models\BusinessLicense;
+use TencentCloud\Common\Exception\TencentCloudSDKException;
 use TencentCloud\Ocr\V20181119\Models\BizLicenseOCRRequest;
+use Throwable;
 
 class BusinessLicenseClient extends \Calchen\EasyOcr\Kernel\Contract\BusinessLicenseClient
 {
@@ -20,7 +25,8 @@ class BusinessLicenseClient extends \Calchen\EasyOcr\Kernel\Contract\BusinessLic
      * @param Config|null $config
      *
      * @return BusinessLicense
-     * @throws \Throwable
+     * @throws InvalidArgumentException
+     * @throws Throwable
      */
     public function ocr($picture, Config $config = null): BusinessLicense
     {
@@ -35,7 +41,15 @@ class BusinessLicenseClient extends \Calchen\EasyOcr\Kernel\Contract\BusinessLic
 
         $req = new BizLicenseOCRRequest();
         $req->fromJsonString(json_encode($params));
-        $resp = static::getTencentCloudClient()->BizLicenseOCR($req);
+
+        try {
+            $resp = static::getTencentCloudClient()->BizLicenseOCR($req);
+        } catch (TencentCloudSDKException $e) {
+            throw new TencentCloudException(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, [
+                'message' => $e->getMessage(),
+                'code'    => $e->getCode(),
+            ], $e->getPrevious());
+        }
 
         return new BusinessLicense($resp);
     }

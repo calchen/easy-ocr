@@ -2,7 +2,9 @@
 
 namespace Calchen\EasyOcr\Test\TencentCloud\IdentityCard;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
+use Calchen\EasyOcr\Exception\TencentCloudException;
 use Calchen\EasyOcr\Kernel\Contract\IdentityCardClient;
 use Calchen\EasyOcr\Kernel\Support\ImageBase64;
 use Calchen\EasyOcr\Models\IdentityCard;
@@ -94,8 +96,9 @@ class PersonalInfoSideTest extends TestCase
                 ->identityCard
                 ->nationalEmblemSideOcr($filePath);
         } catch (Exception $e) {
-            $this->assertInstanceOf(TencentCloudSDKException::class, $e);
-            $this->assertEquals('Ocr识别失败', $e->getMessage());
+            $this->assertInstanceOf(TencentCloudException::class, $e);
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, $e->getCode());
+            $this->assertEquals('{"message":"Ocr识别失败","code":0}', $e->getMessage());
         }
     }
 
@@ -110,8 +113,9 @@ class PersonalInfoSideTest extends TestCase
                 ->identityCard
                 ->personalInfoSideOcr($filePath);
         } catch (Exception $e) {
-            $this->assertInstanceOf(TencentCloudSDKException::class, $e);
-            $this->assertEquals('Ocr识别失败', $e->getMessage());
+            $this->assertInstanceOf(TencentCloudException::class, $e);
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, $e->getCode());
+            $this->assertEquals('{"message":"Ocr识别失败","code":0}', $e->getMessage());
         }
     }
 
@@ -140,6 +144,7 @@ class PersonalInfoSideTest extends TestCase
                 ->ocr($filePath, 'unknown');
         } catch (Exception $e) {
             $this->assertInstanceOf(InvalidArgumentException::class, $e);
+            $this->assertEquals(ErrorCodes::IDENTITY_CARD_SIDE_ARGUMENT_INVALID, $e->getCode());
         }
     }
 
@@ -264,6 +269,7 @@ class PersonalInfoSideTest extends TestCase
                 ->personalInfoSideOcr($filePath, $config);
         } catch (Exception $e) {
             $this->assertInstanceOf(\Calchen\EasyOcr\Exception\Exception::class, $e);
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_IDENTITY_CARD_IS_TEMPORARY, $e->getCode());
         }
     }
 
@@ -283,6 +289,7 @@ class PersonalInfoSideTest extends TestCase
                 ->personalInfoSideOcr($filePath, $config);
         } catch (Exception $e) {
             $this->assertInstanceOf(\Calchen\EasyOcr\Exception\Exception::class, $e);
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_IDENTITY_CARD_OCR_EMPTY_DATA, $e->getCode());
         }
     }
 

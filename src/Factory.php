@@ -2,6 +2,7 @@
 
 namespace Calchen\EasyOcr;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
 use Calchen\EasyOcr\Kernel\ServiceContainer;
 
@@ -26,8 +27,8 @@ class Factory
      */
     public static function make($name, array $config = [])
     {
-        if (! in_array($name, static::AVAILABLE_APPLICATIONS)) {
-            throw new InvalidArgumentException('Application 参数错误。仅数组 '.self::class.'::AVAILABLE_APPLICATIONS 中的值可用。');
+        if (!in_array($name, static::AVAILABLE_APPLICATIONS)) {
+            throw new InvalidArgumentException(ErrorCodes::APPLICATION_NAME_INVALID);
         }
 
         $application = '\\Calchen\\EasyOcr\\'.ucwords($name).'\\Application';

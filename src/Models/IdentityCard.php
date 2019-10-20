@@ -2,6 +2,7 @@
 
 namespace Calchen\EasyOcr\Models;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Exception\Exception;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
 use Calchen\EasyOcr\Kernel\Base\Model;
@@ -90,7 +91,7 @@ class IdentityCard extends Model
         if ($data instanceof IDCardOCRResponse) {
             $this->createFromTencentCloud($data);
         } else {
-            throw new InvalidArgumentException();
+            throw new InvalidArgumentException(ErrorCodes::IDENTITY_CARD_CREATE_FAILED_UNKNOWN_DATA);
         }
     }
 
@@ -128,7 +129,7 @@ class IdentityCard extends Model
             $this->issuingAuthority = $response->Authority;
             $validDate = explode('-', $response->ValidDate);
 
-            if (! isset($advancedInfo['WarnInfos']) || ! in_array(-9100, $advancedInfo['WarnInfos'])) {
+            if (!isset($advancedInfo['WarnInfos']) || !in_array(-9100, $advancedInfo['WarnInfos'])) {
                 $this->validStartAt = Carbon::createFromFormat('Y.m.d', $validDate[0])->startOfDay();
                 if (count($validDate) > 1) {
                     if ($validDate[1] == '长期') {
@@ -139,17 +140,14 @@ class IdentityCard extends Model
                 }
             }
         } else {
-            // 腾讯云 OCR 无法识别临时身份证，会报错
-            // 但是如果识别了临时身份证且设置了 Config 参数中的 TempIdWarn = true，就不会报错但返回的其他字段均为空字符串
-            // -9104 临时身份证告警
-            if (isset($advancedInfo['WarnInfos']) && ! in_array(-9104, $advancedInfo['WarnInfos'])) {
-                // todo
-                throw new Exception('无法识别临时身份证');
+            // 在传入 Config 的时候，即使 OCR 识别失败也不会抛错，会返回所有字段为空字符串
+
+            // 腾讯云 OCR 无法识别临时身份证，但如果设置了 TempIdWarn 会返回警告，-9104 表示临时身份证告警
+            if (isset($advancedInfo['WarnInfos']) && !in_array(-9104, $advancedInfo['WarnInfos'])) {
+                throw new Exception(ErrorCodes::TENCENT_CLOUD_IDENTITY_CARD_IS_TEMPORARY);
             }
 
-            // 在传入 Config 的时候，即使 OCR 识别失败也不会抛错，会返回所有字段为空字符串
-            // todo
-            throw new Exception('Ocr 识别失败');
+            throw new Exception(ErrorCodes::TENCENT_CLOUD_IDENTITY_CARD_OCR_EMPTY_DATA);
         }
 
         // 处理 IdCard 字段，由 CropIdCard 控制
@@ -298,7 +296,7 @@ class IdentityCard extends Model
      */
     public function isNationalEmblemSide(): bool
     {
-        return ! $this->isPersonalInfoSide;
+        return !$this->isPersonalInfoSide;
     }
 
     /**

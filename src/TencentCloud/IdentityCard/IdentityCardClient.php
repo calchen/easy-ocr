@@ -2,13 +2,16 @@
 
 namespace Calchen\EasyOcr\TencentCloud\IdentityCard;
 
-use Calchen\EasyOcr\Exception\Exception;
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
+use Calchen\EasyOcr\Exception\TencentCloudException;
 use Calchen\EasyOcr\Kernel\Base\Config;
 use Calchen\EasyOcr\Kernel\Support\ImageBase64;
 use Calchen\EasyOcr\Kernel\Support\Str;
 use Calchen\EasyOcr\Models\IdentityCard;
+use TencentCloud\Common\Exception\TencentCloudSDKException;
 use TencentCloud\Ocr\V20181119\Models\IDCardOCRRequest;
+use Throwable;
 
 class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardClient
 {
@@ -32,7 +35,7 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
      *
      * @return IdentityCard
      * @throws InvalidArgumentException
-     * @throws \Throwable
+     * @throws Throwable
      */
     public function ocr($picture, string $cardSide, Config $config = null): IdentityCard
     {
@@ -43,7 +46,7 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
             'CardSide' => static::TENCENT_CLOUD_CARD_SIDES[array_search($cardSide, static::CARD_SIDES)],
         ];
 
-        if (! is_null($config)) {
+        if (!is_null($config)) {
             $params['Config'] = (string) $config;
         }
 
@@ -56,7 +59,15 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
 
         $req = new IDCardOCRRequest();
         $req->fromJsonString(json_encode($params));
-        $resp = static::getTencentCloudClient()->IDCardOCR($req);
+
+        try {
+            $resp = static::getTencentCloudClient()->IDCardOCR($req);
+        } catch (TencentCloudSDKException $e) {
+            throw new TencentCloudException(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, [
+                'message' => $e->getMessage(),
+                'code'    => $e->getCode(),
+            ], $e->getPrevious());
+        }
 
         return new IdentityCard($resp);
     }
@@ -65,12 +76,12 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
      * 二代身份证个人信息面所有字段的识别，包括姓名、性别、民族、出生日期、住址、公民身份证号；
      * 具备身份证照片和人像照片的裁剪功能，并可进行复印件、边框和框内遮挡、翻拍、PS检测、临时身份证和身份证有效日期不合法的识别告警。
      *
-     * @param        $picture
-     * @param Config $config
+     * @param             $picture
+     * @param Config|null $config
      *
      * @return IdentityCard
-     * @throws Exception
-     * @throws \Throwable
+     * @throws InvalidArgumentException
+     * @throws Throwable
      */
     public function personalInfoSideOcr($picture, Config $config = null): IdentityCard
     {
@@ -81,12 +92,12 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
      * 二代身份证国徽面所有字段的识别，包括、签发机关、有效期限；
      * 具备身份证照片和人像照片的裁剪功能，并可进行复印件、边框和框内遮挡、翻拍、PS检测、临时身份证和身份证有效日期不合法的识别告警。
      *
-     * @param        $picture
-     * @param Config $config
+     * @param             $picture
+     * @param Config|null $config
      *
      * @return IdentityCard
-     * @throws Exception
-     * @throws \Throwable
+     * @throws InvalidArgumentException
+     * @throws Throwable
      */
     public function nationalEmblemSideOcr($picture, Config $config = null): IdentityCard
     {

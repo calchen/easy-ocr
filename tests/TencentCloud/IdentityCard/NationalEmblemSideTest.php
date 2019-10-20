@@ -2,6 +2,7 @@
 
 namespace Calchen\EasyOcr\Test\TencentCloud\IdentityCard;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Kernel\Contract\IdentityCardClient;
 use Calchen\EasyOcr\Kernel\Support\ImageBase64;
 use Calchen\EasyOcr\Models\IdentityCard;
@@ -94,7 +95,8 @@ class NationalEmblemSideTest extends TestCase
                 ->personalInfoSideOcr($filePath);
         } catch (Exception $e) {
             $this->assertInstanceOf(TencentCloudSDKException::class, $e);
-            $this->assertEquals('Ocr识别失败', $e->getMessage());
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, $e->getCode());
+            $this->assertEquals('{"message":"Ocr识别失败","code":0}', $e->getMessage());
         }
     }
 
@@ -110,7 +112,8 @@ class NationalEmblemSideTest extends TestCase
                 ->nationalEmblemSideOcr($filePath);
         } catch (Exception $e) {
             $this->assertInstanceOf(TencentCloudSDKException::class, $e);
-            $this->assertEquals('Ocr识别失败', $e->getMessage());
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, $e->getCode());
+            $this->assertEquals('{"message":"Ocr识别失败","code":0}', $e->getMessage());
         }
     }
 

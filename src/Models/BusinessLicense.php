@@ -2,6 +2,7 @@
 
 namespace Calchen\EasyOcr\Models;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
 use Calchen\EasyOcr\Exception\InvalidArgumentException;
 use Calchen\EasyOcr\Kernel\Base\Model;
 use Calchen\EasyOcr\Kernel\Support\Str;
@@ -88,7 +89,7 @@ class BusinessLicense extends Model
         if ($data instanceof BizLicenseOCRResponse) {
             $this->createFromTencentCloud($data);
         } else {
-            throw new InvalidArgumentException();
+            throw new InvalidArgumentException(ErrorCodes::BUSINESS_LICENSE_CREATE_FAILED_UNKNOWN_DATA);
         }
     }
 
