@@ -88,8 +88,8 @@ class BusinessLicenseTest extends TestCase
         $filePath = $this->getTestCaseFilePath('businessLicense/face_02.jpg');
         try {
             $this->tencentCloud()
-                ->identityCard
-                ->personalInfoSideOcr($filePath);
+                ->businessLicense
+                ->ocr($filePath);
         } catch (Exception $e) {
             $this->assertInstanceOf(TencentCloudException::class, $e);
             $this->assertEquals(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, $e->getCode());
