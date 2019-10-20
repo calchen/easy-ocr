@@ -27,7 +27,7 @@ class Factory
      */
     public static function make($name, array $config = [])
     {
-        if (!in_array($name, static::AVAILABLE_APPLICATIONS)) {
+        if (! in_array($name, static::AVAILABLE_APPLICATIONS)) {
             throw new InvalidArgumentException(ErrorCodes::APPLICATION_NAME_INVALID);
         }
 

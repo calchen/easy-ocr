@@ -8,7 +8,7 @@ class Exception extends \Exception
 {
     /**
      * 大多数抛异常的地方会只传一个 code，根据 code 可以获取 message
-     * 但同时兼容了通常的异常用法
+     * 但同时兼容了通常的异常用法.
      *
      * Exception constructor.
      *
