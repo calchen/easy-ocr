@@ -46,7 +46,7 @@ class IdentityCardClient extends \Calchen\EasyOcr\Kernel\Contract\IdentityCardCl
             'CardSide' => static::TENCENT_CLOUD_CARD_SIDES[array_search($cardSide, static::CARD_SIDES)],
         ];
 
-        if (!is_null($config)) {
+        if (! is_null($config)) {
             $params['Config'] = (string) $config;
         }
 
