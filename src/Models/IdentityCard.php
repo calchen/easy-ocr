@@ -297,7 +297,7 @@ class IdentityCard extends Model
      */
     public function isNationalEmblemSide(): bool
     {
-        return !$this->isPersonalInfoSide;
+        return ! $this->isPersonalInfoSide;
     }
 
     /**
