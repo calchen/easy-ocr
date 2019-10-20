@@ -2,9 +2,12 @@
 
 namespace Calchen\EasyOcr\Test\TencentCloud;
 
+use Calchen\EasyOcr\Exception\ErrorCodes;
+use Calchen\EasyOcr\Exception\TencentCloudException;
 use Calchen\EasyOcr\Kernel\Support\ImageBase64;
 use Calchen\EasyOcr\Models\BusinessLicense;
 use Calchen\EasyOcr\Test\TestCase;
+use Exception;
 use SplFileInfo;
 use Throwable;
 
@@ -75,6 +78,23 @@ class BusinessLicenseTest extends TestCase
                 ->businessLicense
                 ->ocr($filePath)
         );
+    }
+
+    /**
+     * 测试非营业执照文件.
+     */
+    public function testUnidentifiableFile()
+    {
+        $filePath = $this->getTestCaseFilePath('businessLicense/face_02.jpg');
+        try {
+            $this->tencentCloud()
+                ->identityCard
+                ->personalInfoSideOcr($filePath);
+        } catch (Exception $e) {
+            $this->assertInstanceOf(TencentCloudException::class, $e);
+            $this->assertEquals(ErrorCodes::TENCENT_CLOUD_API_EXCEPTION, $e->getCode());
+            $this->assertEquals('{"message":"Ocr识别失败","code":0}', $e->getMessage());
+        }
     }
 
     /**
