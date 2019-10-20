@@ -143,7 +143,7 @@ class IdentityCard extends Model
             // 在传入 Config 的时候，即使 OCR 识别失败也不会抛错，会返回所有字段为空字符串
 
             // 腾讯云 OCR 无法识别临时身份证，但如果设置了 TempIdWarn 会返回警告，-9104 表示临时身份证告警
-            if (isset($advancedInfo['WarnInfos']) && !in_array(-9104, $advancedInfo['WarnInfos'])) {
+            if (isset($advancedInfo['WarnInfos']) && in_array(-9104, $advancedInfo['WarnInfos'])) {
                 throw new Exception(ErrorCodes::TENCENT_CLOUD_IDENTITY_CARD_IS_TEMPORARY);
             }
 
